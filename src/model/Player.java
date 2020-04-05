@@ -38,10 +38,14 @@ public class Player implements WebSocket.OnTextMessage, Comparable<Player> {
 	private int stepsToChangePaint;
 	private double dirChange = 10;
 	
-	public Player() {
+	public Player(String name) {
 		paintTail = true;
 		this.path = new LinkedList<Coordinate>();
-		this.name = WorldUtils.generateName();
+        if (name != null) {
+            this.name = name;
+        } else {
+		    this.name = WorldUtils.generateName();
+        }
 		this.color = WorldUtils.generateColor();
 		this.head = new Coordinate(-100, -100, false);
 		this.inRound = false;

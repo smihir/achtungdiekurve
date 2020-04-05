@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.lang.System;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +37,9 @@ public class CommandServlet extends HttpServlet {
 
 			public WebSocket doWebSocketConnect(HttpServletRequest request, String protocol) {
                 System.out.printf("url query is: %s\n", request.getQueryString());
-				return new Player();
+                Map m = request.getParameterMap();
+				System.out.printf("name of player is: %s\n", (String) m.get("name"));
+				return new Player((String) m.get("name"));
 			}
 		});
 		_wsFactory.setBufferSize(4096);
