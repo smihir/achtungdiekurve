@@ -20,7 +20,7 @@
         width: 1000,
         height: 600,
         strokeSize: 5,
-        host: "83.209.183.141",
+        host: "localhost",
         port: 8881
       }
 
@@ -31,12 +31,16 @@
           canvas.width = config.width
           canvas.height = config.height
 
-          var game = new Game(canvas)
+          var name = prompt("Please enter your name: ");
+          while (name == null || name == "") {
+            name = prompt("Please enter your name: ");
+          }
+          var game = new Game(canvas, name)
 
           document.getElementsByTagName("body")[0].appendChild(canvas)
       }
 
-      var Game = function (canvas) {
+      var Game = function (canvas, name) {
           this.animator = new Animator(canvas)
 
           this.keys = { left: 37, right: 39 }
@@ -47,6 +51,12 @@
           this.socket = new WebSocket("ws://"+ (config.host || "localhost")+":"+config.port+"/command")
           this.socket.onmessage = this.update.bind(this)
           this.socket.onclose = this.disconnect.bind(this)
+          this.socket.onopen = function() {
+
+            this.socket.send(JSON.stringify({
+                              name: name
+                              }))
+           }.bind(this)
 
           this.events = {
             init: function(message) {
