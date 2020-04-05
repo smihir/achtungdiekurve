@@ -7,7 +7,7 @@ import org.eclipse.jetty.servlet.ServletHandler;
 public class AchtungMain {
 
 	public static void main(String[] args) throws Exception {
-		startWebServer(8881);
+		startWebServer(Integer.parseInt(args[0]));
 	}
 
 	public static void startWebServer(int port) throws Exception {
