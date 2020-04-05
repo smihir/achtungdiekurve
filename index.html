@@ -48,7 +48,7 @@
           document.addEventListener("keydown", this.keyDown.bind(this))
           document.addEventListener("keyup", this.keyUp.bind(this))
 
-          this.socket = new WebSocket("wss://"+ (config.host || "localhost")+":"+config.port+"/command")
+          this.socket = new WebSocket("wss://"+ (config.host || "localhost")+"/command")
           this.socket.onmessage = this.update.bind(this)
           this.socket.onclose = this.disconnect.bind(this)
           this.socket.onopen = function() {
