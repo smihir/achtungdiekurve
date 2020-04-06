@@ -1,7 +1,6 @@
 
 
 import java.io.IOException;
-import java.lang.System;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +34,6 @@ public class CommandServlet extends HttpServlet {
 			}
 
 			public WebSocket doWebSocketConnect(HttpServletRequest request, String protocol) {
-                System.out.printf("url query is: %s\n", request.getQueryString());
-				System.out.printf("name of player is: %s\n", request.getParameter("name"));
 				return new Player(request.getParameter("name"));
 			}
 		});

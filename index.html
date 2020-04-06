@@ -19,7 +19,7 @@
       config = {
         width: 1000,
         height: 600,
-        strokeSize: 5,
+        strokeSize: 2,
         host: "woohoo-zatacka.herokuapp.com",
         port: 80
       }
@@ -254,7 +254,7 @@
           this.ctx.fillStyle = data.color
           this.ctx.beginPath()
 
-          this.ctx.fillRect(data.head.x, data.head.y, size, size)
+          this.ctx.arc(data.head.x, data.head.y, size, 0, 2*Math.PI);
 
           if (data.lasthead && !data.lasthead.isVisible) {
               this.ctx.fillStyle = "#000000"
